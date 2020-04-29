@@ -10,8 +10,9 @@ function App() {
       <section className="base-layout__section">
         <GameScreen />
       </section>
-      <section className="base-layout__section"></section>
-      <LeaderBoardScreen />
+      <section className="base-layout__section">
+        <LeaderBoardScreen />
+      </section>
     </main>
   );
 }

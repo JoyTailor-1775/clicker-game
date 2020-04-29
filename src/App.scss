@@ -2,4 +2,18 @@
   display: flex;
   justify-content: space-around;
   padding: 15px;
+
+  &__section {
+    border: solid 3px #eeeeee;
+    min-width: 50%;
+    min-height: 100%;
+    padding-bottom: 40px;
+    &:first-child {
+      border-right: none;
+      border-radius: 10px 0px 0px 10px;
+    }
+    &:last-child {
+      border-radius: 0px 10px 10px 0px;
+    }
+  }
 }

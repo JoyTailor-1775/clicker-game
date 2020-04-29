@@ -16,10 +16,10 @@ export default class Game extends Component {
 
   render() {
     return (
-      <>
-        <div className="message">{gameMessages.beforeStart}</div>
+      <div className="game__wrapper">
+        <h2 className="game__message">{gameMessages.beforeStart}</h2>
         <Field />
-      </>
+      </div>
     );
   }
 }

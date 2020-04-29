@@ -1,0 +1,11 @@
+.game-field {
+  display: flex;
+  flex-direction: column;
+  &__row {
+    display: flex;
+    margin-bottom: 5px;
+    &:last-child {
+      margin: 0px;
+    }
+  }
+}
