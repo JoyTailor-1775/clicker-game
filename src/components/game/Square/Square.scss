@@ -1,0 +1,20 @@
+$grey: #d4d4d4;
+$green: #2ed311;
+$red: #df0c0c;
+
+.square {
+  width: 20px;
+  height: 20px;
+}
+
+.square.grey {
+  background-color: $grey;
+}
+
+.square.green {
+  background-color: $green;
+}
+
+.square.red {
+  background-color: $red;
+}
