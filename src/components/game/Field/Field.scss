@@ -1,6 +1,12 @@
+@import '../../../globals/variables.scss';
+
 .game-field {
   display: flex;
   flex-direction: column;
+  padding: 25px;
+  background-color: $grey;
+  border-radius: 20px;
+  max-width: 90%;
   &__row {
     display: flex;
     margin-bottom: 5px;

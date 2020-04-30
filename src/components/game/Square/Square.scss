@@ -1,6 +1,4 @@
-$grey: #d4d4d4;
-$green: #2ed311;
-$red: #df0c0c;
+@import '../../../globals/variables.scss';
 
 .square {
   width: 50px;
@@ -12,7 +10,7 @@ $red: #df0c0c;
 }
 
 .square.grey {
-  background-color: $grey;
+  background-color: $base-grey;
 }
 
 .square.green {

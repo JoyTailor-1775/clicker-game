@@ -1,19 +1,37 @@
 .base-layout {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 15px;
 
   &__section {
     border: solid 3px #eeeeee;
-    min-width: 50%;
     min-height: 100%;
     padding-bottom: 40px;
+
     &:first-child {
-      border-right: none;
-      border-radius: 10px 0px 0px 10px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      min-width: 600px;
+
+      @media (min-width: 1250px) {
+        border-right: none;
+        border-radius: 10px 0px 0px 10px;
+        min-width: 70%;
+      }
     }
     &:last-child {
-      border-radius: 0px 10px 10px 0px;
+      border-radius: 20px;
+      min-width: 400px;
+      @media (min-width: 1250px) {
+        border-radius: 0px 10px 10px 0px;
+        min-width: 30%;
+      }
     }
+  }
+
+  @media (max-width: 1250px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
   }
 }

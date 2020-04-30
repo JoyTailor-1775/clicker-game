@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Field from '../Field/Field';
+import './Game.scss';
 
 const gameMessages = Object.freeze({
   beforeStart: `Let's play, fellow!`,

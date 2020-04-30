@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import gameModes from '../../../configs/gameModes';
+import './ControlPanel.scss';
 
 const buttonText = Object.freeze({
   PLAY: 'Play',
@@ -32,24 +33,33 @@ export default class ControlPanel extends Component {
         <select
           id="gameMode"
           name="gameMode"
-          className="control-panel__field control-panel__field--control"
+          className="control-panel__field control-panel__field--select"
           value={this.state.gameMode}
           onChange={this.onChange}
         >
-          <option value="">Pick game mode...</option>
-          <option value={gameModes.EASY}>{gameModes.EASY}</option>
-          <option value={gameModes.NORMAL}>{gameModes.NORMAL}</option>
-          <option value={gameModes.HARD}>{gameModes.HARD}</option>
+          <option value="" disabled hidden>
+            Pick game mode
+          </option>
+          <option className="select-option" value={gameModes.EASY}>
+            Easy
+          </option>
+          <option className="select-option" value={gameModes.NORMAL}>
+            Normal
+          </option>
+          <option className="select-option" value={gameModes.HARD}>
+            Hard
+          </option>
         </select>
         <input
           type="text"
           id="player-name"
           name="playerName"
           className="control-panel__field control-panel__field--input"
+          maxLength="20"
           value={this.state.playerName}
           onChange={this.onChange}
         />
-        <button type="submit" className="control-panel__button">
+        <button type="submit" className="control-panel__button start">
           {buttonText.PLAY}
         </button>
       </form>

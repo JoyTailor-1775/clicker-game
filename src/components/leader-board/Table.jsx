@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Table.scss';
 
 const testData = [
   {
@@ -9,7 +10,7 @@ const testData = [
   {
     id: 1,
     name: 'Someone Someonov',
-    date: '2 Jan 20198',
+    date: '2 Jan 2016',
   },
   {
     id: 2,
@@ -25,8 +26,8 @@ export default class Table extends Component {
         {testData.map((el) => {
           return (
             <li className="leaders-table__row" key={el.id}>
-              <span className="leaders-table__name">{el.name}</span>
-              <span className="leaders-table__date">{el.date}</span>
+              <span className="leaders-table__text name">{el.name}</span>
+              <span className="leaders-table__text date">{el.date}</span>
             </li>
           );
         })}
