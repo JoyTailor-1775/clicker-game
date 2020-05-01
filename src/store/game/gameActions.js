@@ -40,8 +40,13 @@ const updateWinners = (winner) => ({
   payload: winner,
 });
 
-const getGameSettings = () => ({
-  type: types.GET_GAME_SETTINGS,
+const getAvailableSettings = () => ({
+  type: types.GET_AVAILABLE_SETTINGS,
+});
+
+const setAvailableSettings = (settings) => ({
+  type: types.SET_AVAILABLE_SETTINGS,
+  payload: settings,
 });
 
 export default {
@@ -54,5 +59,6 @@ export default {
   setGameStatus,
   getWinners,
   updateWinners,
-  getGameSettings,
+  getAvailableSettings,
+  setAvailableSettings,
 };
