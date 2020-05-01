@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import gameModes from '../../../configs/gameModes';
 import './ControlPanel.scss';
+
+const gameModes = Object.freeze({
+  EASY: 'easy',
+  NORMAL: 'normal',
+  HARD: 'hard',
+});
 
 const buttonText = Object.freeze({
   PLAY: 'Play',
-  PAUSE: 'Pasue',
+  PAUSE: 'Pause',
   PLAY_AGAIN: 'Play Again',
 });
 
