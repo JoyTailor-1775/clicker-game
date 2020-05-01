@@ -29,7 +29,7 @@ export default class Field extends Component {
   constructor(props) {
     super(props);
 
-    // Simply creating the game field
+    // Simply creates the game field
     const fieldSize = 5;
     const matrix = [];
     let id = 0;
@@ -50,7 +50,7 @@ export default class Field extends Component {
       animation: '',
     };
   }
-
+  // This method searches a fieldMatrix for the neccessary element and returns it.
   getSquareInMatrix = (id) => {
     let square;
     const matrix = [...this.state.fieldsMatrix];
@@ -64,6 +64,8 @@ export default class Field extends Component {
     return square;
   };
 
+  // This method searches a fieldMatrix for the neccessary element, replaces it
+  // with the new one and updates the component state.
   replaceSquareInMatrix = async (newElem) => {
     const matrix = [...this.state.fieldsMatrix];
     matrix.forEach((el) => {
@@ -78,6 +80,7 @@ export default class Field extends Component {
     });
   };
 
+  // This method replaces animation state of a matrix element with the passed id.
   replaceAnimation = (id, animation) => {
     const square = this.getSquareInMatrix(id);
     const newSquare = {
