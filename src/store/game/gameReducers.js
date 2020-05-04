@@ -13,7 +13,7 @@ const INITIAL_GAME_CONFIG = Object.freeze({
 function gameConfigReducer(state = { ...INITIAL_GAME_CONFIG }, { type, payload }) {
   switch (type) {
     case types.SET_GAME_CONFIG:
-      return Object.assign(state, payload);
+      return { ...state, ...payload };
 
     default:
       return state;

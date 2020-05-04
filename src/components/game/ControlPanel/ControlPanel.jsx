@@ -63,7 +63,18 @@ class ControlPanel extends Component {
     if (!this.state.gameMode || !this.state.playerName) {
       return;
     }
+    // Updates the game status
+    this.updateGameStatus();
+  };
 
+  onChange = async (e) => {
+    await this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  onSelect = async (e) => {
+    await this.onChange(e);
     // Updates a game config, only if the game has been finished before.
     if (
       this.props.gameStatus === gameStatuses.INITIAL ||
@@ -71,15 +82,6 @@ class ControlPanel extends Component {
     ) {
       this.updateGameConfig();
     }
-
-    // In all the cases game status should be updated.
-    this.updateGameStatus();
-  };
-
-  onChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
   };
 
   render() {
@@ -129,7 +131,7 @@ class ControlPanel extends Component {
             this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
           }`}
           value={this.state.gameMode}
-          onChange={this.onChange}
+          onChange={this.onSelect}
         >
           <option value="" disabled hidden>
             {this.props.loading ? 'Loading...' : 'Pick game mode'}
@@ -149,6 +151,7 @@ class ControlPanel extends Component {
           id="player-name"
           name="playerName"
           disabled={this.props.loading || shouldFormFieldsBeDisabled}
+          placeholder="Please, enter your name"
           className={`control-panel__field control-panel__field--input ${
             this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
           }`}
