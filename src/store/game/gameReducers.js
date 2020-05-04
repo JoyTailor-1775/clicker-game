@@ -3,16 +3,15 @@ import types from './gameActionsTypes';
 import GAME_STATUSES from '../../configs/gameStatuses';
 
 const INITIAL_GAME_CONFIG = Object.freeze({
-  mode: '',
-  field: '',
-  delay: '',
+  mode: {
+    field: 5,
+    delay: 2000,
+  },
+  playerName: '',
 });
 
-function gameConfigReducer(state = INITIAL_GAME_CONFIG, { type, payload }) {
+function gameConfigReducer(state = { ...INITIAL_GAME_CONFIG }, { type, payload }) {
   switch (type) {
-    case types.GET_GAME_CONFIG:
-      return state;
-
     case types.SET_GAME_CONFIG:
       return Object.assign(state, payload);
 
@@ -23,9 +22,6 @@ function gameConfigReducer(state = INITIAL_GAME_CONFIG, { type, payload }) {
 
 function gameStatusReducer(state = GAME_STATUSES.INITIAL, { type, payload }) {
   switch (type) {
-    case types.GET_GAME_STATUS:
-      return state;
-
     case types.SET_GAME_STATUS:
       return payload;
 
@@ -50,9 +46,6 @@ function winnersReducer(state = [], { type, payload }) {
 function availableSettingsReducer(state = null, { type, payload }) {
   switch (type) {
     case types.GET_AVAILABLE_SETTINGS:
-      return state;
-
-    case types.SET_AVAILABLE_SETTINGS:
       return payload;
 
     default:

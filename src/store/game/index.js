@@ -1,2 +1,2 @@
-export { default as reposActions } from './reposActions';
-export { default as reposOperations } from './reposOperations';
+export { default as gameActions } from './gameActions';
+export { default as gameOperations } from './gameOperations';

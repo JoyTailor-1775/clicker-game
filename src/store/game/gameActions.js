@@ -13,17 +13,9 @@ const fetchSuccess = () => ({
   type: types.FETCH_SUCCESS,
 });
 
-const getGameConfig = () => ({
-  type: types.GET_GAME_CONFIG,
-});
-
 const setGameConfig = (params) => ({
   type: types.SET_GAME_CONFIG,
   payload: params,
-});
-
-const getGameStatus = () => ({
-  type: types.GET_GAME_STATUS,
 });
 
 const setGameStatus = (status) => ({
@@ -40,12 +32,8 @@ const updateWinners = (winner) => ({
   payload: winner,
 });
 
-const getAvailableSettings = () => ({
+const getAvailableSettings = (settings) => ({
   type: types.GET_AVAILABLE_SETTINGS,
-});
-
-const setAvailableSettings = (settings) => ({
-  type: types.SET_AVAILABLE_SETTINGS,
   payload: settings,
 });
 
@@ -53,12 +41,9 @@ export default {
   fetchRequest,
   fetchError,
   fetchSuccess,
-  getGameConfig,
   setGameConfig,
-  getGameStatus,
   setGameStatus,
   getWinners,
   updateWinners,
   getAvailableSettings,
-  setAvailableSettings,
 };

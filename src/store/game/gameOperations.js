@@ -6,7 +6,7 @@ const requestGameSettings = () => async (dispatch) => {
 
   try {
     const response = await api.getGameSettings();
-    dispatch(actions.setAvailableSettings(response));
+    dispatch(actions.getAvailableSettings(response));
     dispatch(actions.fetchSuccess());
   } catch (error) {
     dispatch(actions.fetchError(error.message));
@@ -29,7 +29,7 @@ const updateWinners = (winner) => async (dispatch) => {
   dispatch(actions.fetchRequest());
 
   try {
-    const response = await api.setWinners(winner);
+    const response = await api.setWinner(winner);
     dispatch(actions.updateWinners(response));
     dispatch(actions.fetchSuccess());
   } catch (error) {

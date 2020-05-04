@@ -19,6 +19,21 @@
       outline: none;
       background-color: $deep-grey;
     }
+
+    &.disabled {
+      background-color: $deep-grey;
+      cursor: not-allowed;
+      color: $dark-grey;
+    }
+
+    &--select {
+      text-transform: capitalize;
+      cursor: pointer;
+
+      .select-option {
+        text-transform: capitalize;
+      }
+    }
   }
 
   @keyframes onClickStart {
@@ -65,7 +80,14 @@
     }
   }
 
-  &__button.start {
+  &_button.disabled {
+    border: solid 1px $grey;
+    background-color: $base-grey;
+    cursor: not-allowed;
+    color: $grey;
+  }
+
+  &__button.active.start {
     border: solid 1px $green;
     background-color: $green;
     color: #ffff;
@@ -76,7 +98,7 @@
     }
   }
 
-  &__button.pause {
+  &__button.active.pause {
     border: solid 1px $dark-grey;
     background-color: $deep-grey;
     color: $dark-grey;
