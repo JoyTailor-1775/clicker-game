@@ -43,6 +43,16 @@ function winnersReducer(state = [], { type, payload }) {
   }
 }
 
+function lastWinnerReducer(state = null, { type, payload }) {
+  switch (type) {
+    case types.SET_LAST_WINNER:
+      return payload;
+
+    default:
+      return state;
+  }
+}
+
 function availableSettingsReducer(state = null, { type, payload }) {
   switch (type) {
     case types.GET_AVAILABLE_SETTINGS:
@@ -85,6 +95,7 @@ export default combineReducers({
   gameStatus: gameStatusReducer,
   availableSettings: availableSettingsReducer,
   winners: winnersReducer,
+  lastWinner: lastWinnerReducer,
   loading: loadingReducer,
   error: errorReducer,
 });
