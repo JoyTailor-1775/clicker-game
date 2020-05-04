@@ -83,32 +83,39 @@ class ControlPanel extends Component {
   };
 
   render() {
-    // Here inner content and appearance of the submit button is defined
-    let submitButtonText, submitButtonStatusClass;
+    // Here appearance and behavior of the form elements is defined, depends on
+    // a game status.
+    let submitButtonText, submitButtonStatusClass, shouldFormFieldsBeDisabled;
     switch (this.props.gameStatus) {
       case gameStatuses.INITIAL:
         submitButtonText = buttonTextConfig.PLAY;
         submitButtonStatusClass = 'start';
+        shouldFormFieldsBeDisabled = false;
         break;
 
       case gameStatuses.PAUSED:
         submitButtonText = buttonTextConfig.RESUME;
         submitButtonStatusClass = 'start';
+        shouldFormFieldsBeDisabled = true;
+
         break;
 
       case gameStatuses.STARTED:
         submitButtonText = buttonTextConfig.PAUSE;
         submitButtonStatusClass = 'pause';
+        shouldFormFieldsBeDisabled = true;
         break;
 
       case gameStatuses.FINISHED:
         submitButtonText = buttonTextConfig.PLAY_AGAIN;
         submitButtonStatusClass = 'start';
+        shouldFormFieldsBeDisabled = false;
         break;
 
       default:
         submitButtonText = buttonTextConfig.PLAY;
         submitButtonStatusClass = 'start';
+        shouldFormFieldsBeDisabled = false;
         break;
     }
 
@@ -117,15 +124,9 @@ class ControlPanel extends Component {
         <select
           id="gameMode"
           name="gameMode"
-          disabled={
-            this.props.loading || this.props.gameStatus === gameStatuses.STARTED
-              ? true
-              : false
-          }
+          disabled={this.props.loading || shouldFormFieldsBeDisabled}
           className={`control-panel__field control-panel__field--select ${
-            this.props.loading || this.props.gameStatus === gameStatuses.STARTED
-              ? 'disabled'
-              : ''
+            this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
           }`}
           value={this.state.gameMode}
           onChange={this.onChange}
@@ -147,15 +148,9 @@ class ControlPanel extends Component {
           type="text"
           id="player-name"
           name="playerName"
-          disabled={
-            this.props.loading || this.props.gameStatus === gameStatuses.STARTED
-              ? true
-              : false
-          }
+          disabled={this.props.loading || shouldFormFieldsBeDisabled}
           className={`control-panel__field control-panel__field--input ${
-            this.props.loading || this.props.gameStatus === gameStatuses.STARTED
-              ? 'disabled'
-              : ''
+            this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
           }`}
           maxLength="20"
           value={this.state.playerName}
