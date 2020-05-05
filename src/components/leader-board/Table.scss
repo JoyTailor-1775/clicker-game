@@ -8,7 +8,11 @@
   padding: 15px;
   box-sizing: border-box;
   overflow: auto;
-  max-height: 398px;
+  max-height: 400px;
+
+  @media (min-width: 1250px) {
+    max-height: 1198px;
+  }
 
   &:last-child {
     padding-bottom: 5px;
