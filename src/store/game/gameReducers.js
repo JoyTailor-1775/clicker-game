@@ -32,11 +32,8 @@ function gameStatusReducer(state = GAME_STATUSES.INITIAL, { type, payload }) {
 
 function winnersReducer(state = [], { type, payload }) {
   switch (type) {
-    case types.GET_WINNERS:
-      return state;
-
     case types.UPDATE_WINNERS:
-      return [...state, payload];
+      return [...payload];
 
     default:
       return state;

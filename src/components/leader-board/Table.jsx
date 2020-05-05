@@ -1,37 +1,35 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Table.scss';
+import { gameOperations } from '../../store/game';
 
-const testData = [
-  {
-    id: 0,
-    name: 'Someone Someonov',
-    date: '4 Jul 2018',
-  },
-  {
-    id: 1,
-    name: 'Someone Someonov',
-    date: '2 Jan 2016',
-  },
-  {
-    id: 2,
-    name: 'Someone Someonov',
-    date: '3 Jan 2017',
-  },
-];
-
-export default class Table extends Component {
+class Table extends Component {
+  async componentDidMount() {
+    await this.props.requestWinners();
+  }
   render() {
     return (
       <ul className="leaders-table">
-        {testData.map((el) => {
-          return (
-            <li className="leaders-table__row" key={el.id}>
-              <span className="leaders-table__text name">{el.name}</span>
-              <span className="leaders-table__text date">{el.date}</span>
-            </li>
-          );
-        })}
+        {this.props.winners &&
+          this.props.winners.reverse().map((el) => {
+            return (
+              <li className="leaders-table__row" key={el.id}>
+                <span className="leaders-table__text name">{el.winner}</span>
+                <span className="leaders-table__text date">{el.date}</span>
+              </li>
+            );
+          })}
       </ul>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  winners: state.game.winners,
+});
+
+const mapDispatchToProps = {
+  requestWinners: gameOperations.requestWinners,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

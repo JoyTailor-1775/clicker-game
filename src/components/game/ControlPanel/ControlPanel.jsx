@@ -67,6 +67,7 @@ class ControlPanel extends Component {
     }
     this.setState({ validationPassed: true });
     // Updates the game status
+    this.updateGameConfig({ playerName: this.state.playerName });
     this.updateGameStatus();
   };
 

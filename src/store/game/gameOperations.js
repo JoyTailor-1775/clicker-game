@@ -27,11 +27,15 @@ const requestWinners = () => async (dispatch) => {
 
 const updateWinners = (winner) => async (dispatch) => {
   dispatch(actions.fetchRequest());
+  console.log(winner, typeof winner.name, typeof winner.date);
 
   try {
-    // const response = await api.setWinner(winner.name);
+    const response = await api.setWinner({
+      winner: winner.name,
+      date: winner.date,
+    });
     dispatch(actions.setLastWinner(winner.type));
-    // dispatch(actions.updateWinners(response));
+    dispatch(actions.updateWinners(response));
     dispatch(actions.fetchSuccess());
   } catch (error) {
     dispatch(actions.fetchError(error.message));

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as moment from 'moment';
 import Square from '../Square/';
 import './Field.scss';
 import gameStatuses from '../../../configs/gameStatuses';
@@ -214,10 +215,8 @@ class Field extends Component {
   // Creates new game session interval.
   runGame = () => {
     const gameIteration = async () => {
-      console.log(this.state, 'state before');
       // If there is a highlighted field, from the previous iteration - gives
       // it to computer.
-      console.log(this.state.highlightedFieldId, 'highlighted id');
       if (this.state.highlightedFieldId !== null) {
         await this.loseSquare(this.state.highlightedFieldId);
       }
@@ -231,14 +230,10 @@ class Field extends Component {
 
       // Highlightes random square among the default ones.
       const defaultFields = this.filterMatrix(fieldSquareStatuses.DEFAULT);
-      console.log(defaultFields, 'defaultFields');
       const randomFieldId = getRandomInt(defaultFields.length - 1);
-      console.log(randomFieldId, 'randomFieldId');
       const field = defaultFields[randomFieldId];
-      console.log(field, 'field object');
       this.highlightSquare(field.id);
       await this.setState({ highlightedFieldId: field.id });
-      console.log(this.state, 'state after');
     };
     return setInterval(gameIteration, this.props.gameConfig.mode.delay);
   };
@@ -253,9 +248,12 @@ class Field extends Component {
   finishGame = (winner) => {
     clearInterval(this.state.intervalId);
     this.props.setGameStatus(gameStatuses.FINISHED);
+    const winnerName =
+      winner === playerTypes.USER ? this.props.gameConfig.playerName : winner;
     const winnerObj = {
-      name: winner === playerTypes.USER ? this.props.gameConfig.playerName : winner,
+      name: winnerName,
       type: winner,
+      date: moment().format('h:mm:ss a; MMMM Do YYYY'),
     };
     this.props.updateWinners(winnerObj);
   };

@@ -23,10 +23,6 @@ const setGameStatus = (status) => ({
   payload: status,
 });
 
-const getWinners = () => ({
-  type: types.GET_WINNERS,
-});
-
 const updateWinners = (winner) => ({
   type: types.UPDATE_WINNERS,
   payload: winner,
@@ -48,7 +44,6 @@ export default {
   fetchSuccess,
   setGameConfig,
   setGameStatus,
-  getWinners,
   updateWinners,
   setLastWinner,
   getAvailableSettings,
