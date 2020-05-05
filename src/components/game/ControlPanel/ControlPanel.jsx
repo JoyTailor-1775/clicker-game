@@ -24,7 +24,6 @@ class ControlPanel extends Component {
   // Here available game settings are requested from a server.
   async componentDidMount() {
     await this.props.requestGameSettings();
-    console.log(this.props.availableSettings);
   }
 
   // This method created a new game config based on selected params by the user

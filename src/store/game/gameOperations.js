@@ -27,7 +27,6 @@ const requestWinners = () => async (dispatch) => {
 
 const updateWinners = (winner) => async (dispatch) => {
   dispatch(actions.fetchRequest());
-  console.log(winner, typeof winner.name, typeof winner.date);
 
   try {
     const response = await api.setWinner({
