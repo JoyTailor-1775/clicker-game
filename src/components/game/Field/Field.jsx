@@ -57,11 +57,13 @@ class Field extends Component {
     return matrix;
   };
 
+  // Creates fields matrix for initial render
   componentDidMount() {
     const matrix = this.createMatrix(this.props.gameConfig.mode.field);
     this.setState({ fieldsMatrix: matrix });
   }
 
+  // Creates matrix for all subsequent changes in game's config
   componentDidUpdate(prevProps) {
     if (prevProps.gameConfig.mode.field !== this.props.gameConfig.mode.field) {
       const matrix = this.createMatrix(this.props.gameConfig.mode.field);

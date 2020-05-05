@@ -17,6 +17,7 @@ class ControlPanel extends Component {
     this.state = {
       gameMode: '',
       playerName: '',
+      validationPassed: true,
     };
   }
 
@@ -59,10 +60,12 @@ class ControlPanel extends Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-    // Primitive silent validation.
+    // Simple validation.
     if (!this.state.gameMode || !this.state.playerName) {
+      this.setState({ validationPassed: false });
       return;
     }
+    this.setState({ validationPassed: true });
     // Updates the game status
     this.updateGameStatus();
   };
@@ -122,53 +125,62 @@ class ControlPanel extends Component {
     }
 
     return (
-      <form className="control-panel" onSubmit={this.onFormSubmit}>
-        <select
-          id="gameMode"
-          name="gameMode"
-          disabled={this.props.loading || shouldFormFieldsBeDisabled}
-          className={`control-panel__field control-panel__field--select ${
-            this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
+      <div className="control-panel__wrapper">
+        <form className="control-panel" onSubmit={this.onFormSubmit}>
+          <select
+            id="gameMode"
+            name="gameMode"
+            disabled={this.props.loading || shouldFormFieldsBeDisabled}
+            className={`control-panel__field control-panel__field--select ${
+              this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
+            }`}
+            value={this.state.gameMode}
+            onChange={this.onSelect}
+          >
+            <option value="" disabled hidden>
+              {this.props.loading ? 'Loading...' : 'Pick game mode'}
+            </option>
+            {!this.props.availableSettings
+              ? []
+              : Object.keys(this.props.availableSettings).map((el) => {
+                  return (
+                    <option className="select-option" value={el} key={el}>
+                      {el.slice(0, el.length - 4)}
+                    </option>
+                  );
+                })}
+          </select>
+          <input
+            type="text"
+            id="player-name"
+            name="playerName"
+            disabled={this.props.loading || shouldFormFieldsBeDisabled}
+            placeholder="Please, enter your name"
+            className={`control-panel__field control-panel__field--input ${
+              this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
+            }`}
+            maxLength="20"
+            value={this.state.playerName}
+            onChange={this.onChange}
+          />
+          <button
+            type="submit"
+            className={`control-panel__button ${submitButtonStatusClass} ${
+              this.props.loading ? 'disabled' : 'active'
+            }`}
+            disabled={this.props.loading}
+          >
+            {submitButtonText}
+          </button>
+        </form>
+        <p
+          className={`validation-message ${
+            this.state.validationPassed ? 'hide' : 'show'
           }`}
-          value={this.state.gameMode}
-          onChange={this.onSelect}
         >
-          <option value="" disabled hidden>
-            {this.props.loading ? 'Loading...' : 'Pick game mode'}
-          </option>
-          {!this.props.availableSettings
-            ? []
-            : Object.keys(this.props.availableSettings).map((el) => {
-                return (
-                  <option className="select-option" value={el} key={el}>
-                    {el.slice(0, el.length - 4)}
-                  </option>
-                );
-              })}
-        </select>
-        <input
-          type="text"
-          id="player-name"
-          name="playerName"
-          disabled={this.props.loading || shouldFormFieldsBeDisabled}
-          placeholder="Please, enter your name"
-          className={`control-panel__field control-panel__field--input ${
-            this.props.loading || shouldFormFieldsBeDisabled ? 'disabled' : ''
-          }`}
-          maxLength="20"
-          value={this.state.playerName}
-          onChange={this.onChange}
-        />
-        <button
-          type="submit"
-          className={`control-panel__button ${submitButtonStatusClass} ${
-            this.props.loading ? 'disabled' : 'active'
-          }`}
-          disabled={this.props.loading}
-        >
-          {submitButtonText}
-        </button>
-      </form>
+          Please, fill all the fields!
+        </p>
+      </div>
     );
   }
 }
