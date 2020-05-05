@@ -1,0 +1,53 @@
+@import '../../globals/variables.scss';
+
+.leaders-table {
+  list-style: none;
+  background-color: $grey;
+  min-width: 300px;
+  border-radius: 20px;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: auto;
+  max-height: 400px;
+
+  @media (min-width: 1250px) {
+    max-height: 1198px;
+  }
+
+  &:last-child {
+    padding-bottom: 5px;
+  }
+
+  &__row {
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: $black;
+      bottom: 10px;
+    }
+  }
+
+  &__text {
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &.name {
+      max-width: 150px;
+      color: $dark-red;
+    }
+
+    &.date {
+      max-width: 90px;
+      color: $dark-black;
+      font-weight: 900px;
+    }
+  }
+}
